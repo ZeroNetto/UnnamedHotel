@@ -11,29 +11,26 @@ else if (keyboard_check(ord("D")) || keyboard_check(vk_right)){
 
 else if (keyboard_check_pressed(ord("E")) && can_interact){
 	if (interact_object.item != 0){
-		items[array_length_1d(items)] = interact_object.item;
+		items.list[array_length_1d(items.list)] = interact_object.item;
 		interact_object.item = 0;
 	}
 	else if (interact_object.can_use_item){
 		temp_items = [];
 		offset = 0;
-		for (i = 0; i < array_length_1d(items); i += 1){
-			if (items[i] == interact_object.needed_item){
+		for (i = 0; i < array_length_1d(items.list); i += 1){
+			if (items.list[i] == interact_object.needed_item){
 				interact_object.can_use_item = false;
 				offset = 1;
 			}
 			else{
-				temp_items[i - offset] = items[i];
+				temp_items[i - offset] = items.list[i];
 			}
 		}
-		items = temp_items;
+		items.list = temp_items;
 		
-		if (offset > 0){
-			interact_object.can_use_item = false;
-		}
 	}
 	else if (interact_object.next_room != 0){
-		room_goto(interact_object.next_room );
+		room_goto(interact_object.next_room);
 	}
 	
 }

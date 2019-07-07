@@ -1,3 +1,3 @@
-if (can_use_item = false){
+if (!can_use_item){
 	interact_message = "Now it's open";
 }
